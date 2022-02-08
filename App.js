@@ -10,8 +10,8 @@ const joke = document.querySelector('.joke');
 const calculator = () => {
   const userDate = (new Date(inputDate.value).getTime() / 1000).toFixed(0);
   const dateNow = (new Date().getTime() / 1000).toFixed(0);
-  const ömer = +dateNow - +userDate;
-  const realDiff = ömer;
+  const realDiff = +dateNow - +userDate;
+  console.log(realDiff);
   //Seconds
   const getSecond = String(realDiff % 60).padStart(2, '0');
   //Minutes
@@ -22,13 +22,12 @@ const calculator = () => {
     '0'
   );
   //Days
-  const getDay = String(Math.floor((realDiff / (60 * 60 * 24)) % 30)).padStart(
-    2,
-    '0'
-  );
+  const getDay = String(
+    Math.floor(((realDiff * 365.25) / (60 * 60 * 24 * 365)) % 30)
+  ).padStart(2, '0');
   //Months
   const getMonth = String(
-    Math.floor((realDiff / (60 * 60 * 24 * 30)) % 12)
+    Math.floor(((realDiff * 12) / (60 * 60 * 24 * 365)) % 12)
   ).padStart(2, '0');
   //Years
   const getYear = String(Math.floor(realDiff / (60 * 60 * 24 * 365))).padStart(
@@ -38,10 +37,10 @@ const calculator = () => {
 
   //Display Exact Times if userTime is understandible
   if (+getYear >= 0) {
-    dateTimeYear.innerText = getYear;
+    dateTimeYear.innerText = +getYear;
     dateTimeMonth.innerText = getMonth;
     dateTimeDay.innerText = getDay;
-    dateTimeHour.innerText = getHour;
+    dateTimeHour.innerText = +getHour + 3;
     dateTimeMinute.innerText = getMinute;
     dateTimeSecond.innerText = getSecond;
     joke.style.display = 'none';
