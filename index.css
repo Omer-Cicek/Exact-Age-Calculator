@@ -22,7 +22,7 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  padding-top: 300px;
+  padding-top: 200px;
   padding-right: 190px;
 }
 h1 {
@@ -55,4 +55,9 @@ h1 {
 
 input {
   color: black;
+}
+.joke {
+  display: none;
+  width: 200px;
+  height: 200px;
 }
