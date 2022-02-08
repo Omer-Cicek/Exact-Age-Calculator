@@ -6,21 +6,22 @@
   color: #fff;
   font-family: 'Poppins', sans-serif;
   font-size: 1.3rem;
+  letter-spacing: 3px;
 }
 
 .container {
-  background: url('./23212.png') center center/cover no-repeat;
+  background: url('./pexels-george-dolgikh-giftpunditscom-1303081.jpg') center
+    center/cover no-repeat;
   min-width: 100vw;
   min-height: 100vh;
 }
 .container-calculator {
-  /* border: 1px red solid; */
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: 300px;
   padding-right: 190px;
 }
 h1 {
@@ -30,6 +31,9 @@ h1 {
 
 .date {
   display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .dates {
@@ -38,6 +42,16 @@ h1 {
   flex-direction: column;
   text-align: center;
 }
+.dates-num {
+  font-size: 2.5rem;
+}
 .dates-lettering {
   font-size: 25px;
+}
+.birthday-selector {
+  margin-top: 50px;
+}
+
+input {
+  color: black;
 }
