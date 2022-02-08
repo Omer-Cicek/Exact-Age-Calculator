@@ -23,8 +23,9 @@ const calculator = () => {
   );
   //Days
   const getDay = String(
-    Math.floor(((realDiff * 365.25) / (60 * 60 * 24 * 365)) % 30)
+    new Date().getDate() - new Date(inputDate.value).getDate()
   ).padStart(2, '0');
+  console.log(getDay);
   //Months
   const getMonth = String(
     Math.floor(((realDiff * 12) / (60 * 60 * 24 * 365)) % 12)
