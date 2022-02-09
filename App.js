@@ -22,10 +22,10 @@ const calculator = () => {
     '0'
   );
   //Days
-  const getDay = String(
+  let getDay = String(
     new Date().getDate() - new Date(inputDate.value).getDate()
   ).padStart(2, '0');
-  console.log(getDay);
+
   //Months
   const getMonth = String(
     Math.floor(((realDiff * 12) / (60 * 60 * 24 * 365)) % 12)
@@ -40,7 +40,8 @@ const calculator = () => {
   if (+getYear >= 0) {
     dateTimeYear.innerText = +getYear;
     dateTimeMonth.innerText = getMonth;
-    dateTimeDay.innerText = getDay;
+    dateTimeDay.innerText =
+      +getDay <= 0 ? +getDay + 30 : getDay.padStart(2, '0');
     dateTimeHour.innerText = +getHour + 3;
     dateTimeMinute.innerText = getMinute;
     dateTimeSecond.innerText = getSecond;
