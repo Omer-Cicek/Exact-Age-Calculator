@@ -1,4 +1,4 @@
-const inputDate = document.querySelector('#date');
+const birthdayInput = document.querySelector('#date');
 const dateTimeYear = document.querySelector('.dates-years-num');
 const dateTimeMonth = document.querySelector('.dates-months-num');
 const dateTimeDay = document.querySelector('.dates-days-num');
@@ -8,49 +8,39 @@ const dateTimeSecond = document.querySelector('.dates-seconds-num');
 const joke = document.querySelector('.joke');
 
 const calculator = () => {
-  const userDate = (new Date(inputDate.value).getTime() / 1000).toFixed(0);
-  const dateNow = (new Date().getTime() / 1000).toFixed(0);
-  const realDiff = +dateNow - +userDate;
-  console.log(realDiff);
+  const birthdayValue = new Date(birthdayInput.value);
+  let now = new Date();
+  let age = new Date(now - birthdayValue);
+  console.log(age);
   //Seconds
-  const getSecond = String(realDiff % 60).padStart(2, '0');
+  let secondOfAge = age.getSeconds();
   //Minutes
-  const getMinute = String(Math.floor((realDiff / 60) % 60)).padStart(2, '0');
+  let minuteOfAge = age.getMinutes();
   //Hours
-  const getHour = String(Math.floor((realDiff / (60 * 60)) % 24)).padStart(
-    2,
-    '0'
-  );
+  let hourOfAge = age.getHours();
   //Days
-  let getDay = String(
-    new Date().getDate() - new Date(inputDate.value).getDate()
-  ).padStart(2, '0');
+  let dayOfAge = age.getDate();
 
   //Months
-  const getMonth = String(
-    Math.floor(((realDiff * 12) / (60 * 60 * 24 * 365)) % 12)
-  ).padStart(2, '0');
+  let monthOfAge = age.getMonth();
   //Years
-  const getYear = String(Math.floor(realDiff / (60 * 60 * 24 * 365))).padStart(
-    2,
-    '0'
-  );
+  let yearOfAge = age.getFullYear() - 1970;
 
   //Display Exact Times if userTime is understandible
-  if (+getYear >= 0) {
-    dateTimeYear.innerText = +getYear;
-    dateTimeMonth.innerText = getMonth;
-    dateTimeDay.innerText =
-      +getDay <= 0 ? +getDay + 30 : getDay.padStart(2, '0');
-    dateTimeHour.innerText = +getHour + 3;
-    dateTimeMinute.innerText = getMinute;
-    dateTimeSecond.innerText = getSecond;
+  if (+yearOfAge >= 0) {
+    dateTimeYear.innerHTML = yearOfAge.toString().padStart(2, '0');
+    dateTimeMonth.innerHTML = monthOfAge.toString().padStart(2, '0');
+    dateTimeDay.innerHTML = (dayOfAge - 1).toString().padStart(2, '0');
+    dateTimeHour.innerHTML = (hourOfAge + 1).toString().padStart(2, '0');
+    dateTimeMinute.innerHTML = minuteOfAge.toString().padStart(2, '0');
+    dateTimeSecond.innerHTML = secondOfAge.toString().padStart(2, '0');
+
     joke.style.display = 'none';
   }
-  if (+getYear < 0) joke.style.display = 'block';
+  if (+yearOfAge < 0) joke.style.display = 'block';
 };
 
 //Calling Func
-inputDate.addEventListener('change', () => {
+birthdayInput.addEventListener('change', () => {
   setInterval(calculator, 1000);
 });
